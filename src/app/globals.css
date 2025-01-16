@@ -13,7 +13,22 @@
     --foreground: #ededed;
   }
 }
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
+  font-weight: 600; /* Menentukan berat font semibold */
+  font-style: normal;
+}
+
+/* Poppins Regular */
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400; /* Poppins Regular */
+  font-style: normal;
+}
 
 body {
   @apply bg-gray-100 font-sans;
+  font-family: 'Poppins'; /* Menambahkan font Poppins ke seluruh body */
 }
