@@ -32,3 +32,18 @@ body {
   @apply bg-gray-100 font-sans;
   font-family: 'Poppins'; /* Menambahkan font Poppins ke seluruh body */
 }
+
+/* Sembunyikan scrollbar di Chrome, Edge, Safari */
+.w-full::-webkit-scrollbar {
+  display: none; /* Menyembunyikan scrollbar */
+}
+
+/* Sembunyikan scrollbar di Firefox */
+.w-full {
+  scrollbar-width: none; /* Menyembunyikan scrollbar */
+}
+
+/* Pastikan tidak ada latar belakang yang terlihat */
+.w-full::-webkit-scrollbar-track {
+  background: transparent;
+}
