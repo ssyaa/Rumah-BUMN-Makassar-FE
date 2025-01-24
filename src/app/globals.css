@@ -32,3 +32,81 @@ body {
   @apply bg-gray-100 font-sans;
   font-family: 'Poppins'; /* Menambahkan font Poppins ke seluruh body */
 }
+
+/* Sembunyikan scrollbar di Chrome, Edge, Safari */
+.w-full::-webkit-scrollbar {
+  display: none; /* Menyembunyikan scrollbar */
+}
+
+/* Sembunyikan scrollbar di Firefox */
+.w-full {
+  scrollbar-width: none; /* Menyembunyikan scrollbar */
+}
+
+/* Pastikan tidak ada latar belakang yang terlihat */
+.w-full::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Styling untuk Ecatalog */
+.ecatalog-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.ecatalog-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.ecatalog-search-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ecatalog-search-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ecatalog-filter {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.ecatalog-search-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ecatalog-search-button:hover {
+  background-color: #0056b3;
+}
+
+.ecatalog-product-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.ecatalog-product-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  padding: 10px;
+}
+
+.ecatalog-product-image {
+  width: 100%;
+  height: auto;
+}
