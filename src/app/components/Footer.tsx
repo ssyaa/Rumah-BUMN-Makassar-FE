@@ -3,9 +3,9 @@ import React from "react";
 const Footer: React.FC = () => {
     return (
         <footer className="bg-white text-gray-800 py-8">
-            <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+            <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
                 {/* Bagian Kiri: Logo dan Informasi Kontak */}
-                <div className="flex flex-col md:w-1/2 mb-6 md:mb-0 ml-12"> {/* Menambahkan margin kiri */}
+                <div className="flex flex-col md:w-1/2 mb-6 md:mb-0 ml-0"> {/* Menghapus margin kiri lebih banyak */}
                     <div className="flex items-center mb-4 space-x-4">
                         {/* Logo BUMN */}
                         <img
@@ -44,11 +44,11 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Bagian Kanan: Navigasi */}
-                <div className="flex flex-col md:w-1/2 items-start md:items-end mr-12">
+                <div className="flex flex-col md:w-1/2 items-start md:items-end mr-0"> {/* Menghapus margin kanan lebih banyak */}
                     <div className="flex space-x-4 mb-4 md:mb-0">
-                        <a href="https://www.tiktok.com" className="text-black hover:underline ml-12">Tiktok</a>
-                        <a href="https://www.instagram.com" className="text-black hover:underline ml-12">Instagram</a>
-                        <a href="https://www.youtube.com" className="text-black hover:underline ml-12">Youtube</a>
+                        <a href="https://www.tiktok.com/@rumahbumn_makassar" className="text-black hover:underline ml-0">Tiktok</a> {/* Menghilangkan margin kiri */}
+                        <a href="https://www.instagram.com/produk.umkm.rb.makassar?igsh=MXd1emp2eHhzNHcwcA==" className="text-black hover:underline ml-0">Instagram</a> {/* Menghilangkan margin kiri */}
+                        <a href="https://www.youtube.com/@RumahBUMNMakassar" className="text-black hover:underline ml-0">Youtube</a> {/* Menghilangkan margin kiri */}
                     </div>
                 </div>
             </div>

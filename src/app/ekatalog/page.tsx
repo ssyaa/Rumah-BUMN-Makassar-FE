@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { firestore } from '@/../firebase-config'; // Mengimpor Firestore dari file firebase-config.js
-import { collection, getDocs, query, where, Query } from 'firebase/firestore'; // Impor fungsi query dan where
+import { firestore } from '@/../firebase-config';
+import { collection, getDocs, query, where, Query } from 'firebase/firestore';  // Importing the separated CSS file
+import './catalog.css';  // pastikan jalur file sesuai dengan struktur folder Anda
+
 
 const Ecatalog: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState("");
-    const [selectedQuery, setSelectedQuery] = useState("Semua Jenis UMKM"); // Pastikan ini string, bukan array
+    const [selectedQuery, setSelectedQuery] = useState("Semua Jenis UMKM");
     const [products, setProducts] = useState<any[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 16;
@@ -16,7 +18,6 @@ const Ecatalog: React.FC = () => {
             try {
                 let productsQuery: Query<any> = collection(firestore, "products");
 
-                // Jika ada filter jenis UMKM yang dipilih
                 if (selectedQuery !== "Semua Jenis UMKM") {
                     productsQuery = query(
                         productsQuery,
@@ -33,33 +34,27 @@ const Ecatalog: React.FC = () => {
         };
 
         fetchProducts();
-    }, [selectedQuery]); // Panggil ulang saat selectedQuery berubah
+    }, [selectedQuery]);
 
     const handleSearch = () => {
         console.log("Mencari dengan", { searchQuery, selectedQuery });
     };
 
-    // Logika pagination untuk menampilkan hanya 16 produk
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
 
-    // Fungsi untuk menangani klik pagination
     const handlePagination = (pageNumber: number) => {
         setCurrentPage(pageNumber);
     };
 
-    // Menghitung jumlah halaman yang diperlukan
     const pageNumbers = [];
     for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
         pageNumbers.push(i);
     }
 
     return (
-        <div
-            className="ecatalog-container"
-            style={{ backgroundColor: "#ffffff", minHeight: "100vh" }} // Tambahkan latar belakang putih dan minimum tinggi agar penuh layar
-        >
+        <div className="ecatalog-container">
             <h1 className="ecatalog-title">E-Katalog Produk UMKM</h1>
             <div className="ecatalog-search-container">
                 <input
@@ -84,33 +79,26 @@ const Ecatalog: React.FC = () => {
                     Cari
                 </button>
             </div>
+
             {products.length === 0 ? (
-                <p>Sedang memuat produk...</p>
+                <p className="text-center">Sedang memuat produk...</p>
             ) : (
-                <div className="ecatalog-product-container grid grid-cols-4 gap-4">
+                <div className="ecatalog-product-container">
                     {currentProducts.map((product, index) => (
                         <div
                             key={index}
-                            className="ecatalog-product-card bg-white shadow-lg rounded-lg p-4 flex flex-col items-center w-full h-auto max-h-[350px] overflow-hidden cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105" // Efek hover untuk membesarkan seluruh card
+                            className="ecatalog-product-card"
                         >
                             <img
                                 src={product.fotoProduk || "/placeholder.png"}
                                 alt={product.namaBrand || "Produk"}
-                                className="rounded-md w-40 h-40 object-cover mb-4"
+                                className="product-img"
                             />
-                            <div className="px-4 py-2 text-center">
-                                <p className="text-gray-800 font-semibold">
-                                    {product.namaBrand}
-                                </p>
-                                <p className="text-gray-600 italic">
-                                    {product.namaOwner}
-                                </p>
-                                <p className="text-gray-600 poppins">
-                                    {product.descProduct}
-                                </p>
-                                <p className="text-gray-800 font-bold mt-2">
-                                    Rp {product.price}
-                                </p>
+                            <div className="product-details">
+                                <p className="product-brand">{product.namaBrand}</p>
+                                <p className="product-owner">{product.namaOwner}</p>
+                                <p className="product-desc">{product.descProduct}</p>
+                                <p className="product-price">Rp {product.price}</p>
                             </div>
                         </div>
                     ))}
@@ -119,16 +107,14 @@ const Ecatalog: React.FC = () => {
 
             {/* Pagination */}
             {products.length > 16 && (
-                <div className="pagination mt-4 flex justify-center space-x-4">
+                <div className="pagination">
                     {pageNumbers.map((number) => (
                         <button
                             key={number}
                             onClick={() => handlePagination(number)}
-                            className={`${
-                                currentPage === number
-                                    ? "bg-blue-500 text-white"
-                                    : "bg-gray-200 text-gray-800"
-                            } px-4 py-2 rounded`}
+                            className={`pagination-button ${
+                                currentPage === number ? "active" : "inactive"
+                            }`}
                         >
                             {number}
                         </button>

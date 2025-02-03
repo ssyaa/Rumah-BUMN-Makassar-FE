@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global styles for color scheme */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -13,100 +14,37 @@
     --foreground: #ededed;
   }
 }
+
+/* Font setup */
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins/Poppins-SemiBold.ttf') format('truetype');
-  font-weight: 600; /* Menentukan berat font semibold */
+  font-weight: 600;
   font-style: normal;
 }
 
-/* Poppins Regular */
 @font-face {
   font-family: 'Poppins';
   src: url('/fonts/Poppins/Poppins-Regular.ttf') format('truetype');
-  font-weight: 400; /* Poppins Regular */
+  font-weight: 400;
   font-style: normal;
 }
 
+/* Body styling */
 body {
-  @apply bg-gray-100 font-sans;
-  font-family: 'Poppins'; /* Menambahkan font Poppins ke seluruh body */
+  @apply bg-white font-sans; /* Mengubah background menjadi putih */
+  font-family: 'Poppins';
 }
 
-/* Sembunyikan scrollbar di Chrome, Edge, Safari */
+/* Hide scrollbar in Chrome, Edge, Safari */
 .w-full::-webkit-scrollbar {
-  display: none; /* Menyembunyikan scrollbar */
+  display: none;
 }
 
-/* Sembunyikan scrollbar di Firefox */
 .w-full {
-  scrollbar-width: none; /* Menyembunyikan scrollbar */
+  scrollbar-width: none;
 }
 
-/* Pastikan tidak ada latar belakang yang terlihat */
 .w-full::-webkit-scrollbar-track {
   background: transparent;
-}
-
-/* Styling untuk Ecatalog */
-.ecatalog-container {
-  padding: 20px;
-  font-family: Arial, sans-serif;
-}
-
-.ecatalog-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.ecatalog-search-container {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.ecatalog-search-input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.ecatalog-filter {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.ecatalog-search-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.ecatalog-search-button:hover {
-  background-color: #0056b3;
-}
-
-.ecatalog-product-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.ecatalog-product-card {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  padding: 10px;
-}
-
-.ecatalog-product-image {
-  width: 100%;
-  height: auto;
 }

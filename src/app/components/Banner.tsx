@@ -2,22 +2,22 @@ import React from "react";
 
 const Banner: React.FC = () => {
     return (
-        <div className="bg-blue-50 h-[400px] flex items-center justify-center">
-            <div className="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between">
-                {/* Bagian Kiri: Gambar */}
-                <div className="md:w-1/2 relative flex justify-center items-center mb-8 md:mb-0">
-                    <div className="rounded-lg p-4 max-w-sm mx-auto md:mx-0 relative">
+        <div className="bg-blue-50 h-[300px] flex items-center justify-center">
+            <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
+                {/* Bagian Kiri: Gambar (Hanya muncul di layar MD ke atas) */}
+                <div className="hidden md:flex md:w-1/2 relative justify-center items-center mb-6 md:mb-0">
+                    <div className="rounded-lg p-3 max-w-xs mx-auto md:mx-0 relative">
                         {/* Gambar market.png (background) */}
                         <img
                             src="/market.png"
                             alt="Rumah BUMN"
                             className="rounded-lg w-full h-auto object-cover"
                             style={{
-                                transform: "translateY(12%)",
-                                top: "20%", // Posisi gambar 20% dari atas elemen induk
-                                left: "40%", // Posisi gambar 40% dari kiri elemen induk
-                                width: "100%", // Ukuran gambar lebih kecil
-                                height: "auto", // Menjaga proporsi gambar
+                                transform: "translateY(10%)",
+                                top: "15%",
+                                left: "35%",
+                                width: "90%",
+                                height: "auto",
                             }}
                         />
                         {/* Gambar people.png */}
@@ -26,10 +26,10 @@ const Banner: React.FC = () => {
                             alt="People"
                             className="rounded-lg object-cover absolute"
                             style={{
-                                top: "35%", // Atur posisi gambar dari atas
-                                left: "50%", // Atur posisi gambar dari kiri
-                                width: "60%", // Ukuran gambar lebih kecil dari sebelumnya
-                                height: "auto", // Menjaga proporsi gambar
+                                top: "30%",
+                                left: "45%",
+                                width: "50%",
+                                height: "auto",
                             }}
                         />
                         {/* Gambar logo_rb.png */}
@@ -38,24 +38,24 @@ const Banner: React.FC = () => {
                             alt="Rumah BUMN Makassar"
                             className="rounded-lg object-cover absolute"
                             style={{
-                                bottom: "70%", // Atur posisi gambar dari bawah
-                                right: "41%", // Atur posisi gambar dari kanan
-                                width: "18%", // Ukuran gambar lebih kecil dari sebelumnya
-                                height: "auto", // Menjaga proporsi gambar
+                                bottom: "65%",
+                                right: "38%",
+                                width: "15%",
+                                height: "auto",
                             }}
                         />
                     </div>
                 </div>
 
                 {/* Bagian Kanan: Teks dan Tombol */}
-                <div className="md:w-1/2 text-center md:text-left">
-                    <h1 className="text-3xl md:text-4xl font-bold text-gray-800">
+                <div className="w-full md:w-1/2 text-center md:text-left">
+                    <h1 className="text-xl md:text-2xl font-bold text-gray-800">
                         Punya Produk UMKM?
                         <br />
                         Ayo Daftarkan Produkmu Sekarang!
                     </h1>
                     <a href="https://forms.gle/55oJHLTVGGSS1rQe6" target="_blank" rel="noopener noreferrer">
-                        <button className="mt-6 px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition">
+                        <button className="mt-4 px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition">
                             Daftar
                         </button>
                     </a>
