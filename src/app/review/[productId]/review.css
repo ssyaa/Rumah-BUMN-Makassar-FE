@@ -1,0 +1,77 @@
+/* Container utama */
+.review-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    font-family: "Poppins, sans-serif";
+}
+
+/* Tombol kembali */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 16px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Wrapper utama */
+.product-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+/* Container untuk gambar */
+.image-container {
+    flex: 0.6;
+    max-width: 400px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 0;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Kontainer untuk nama brand + logo */
+.product-title-container {
+    display: flex;
+    align-items: center; /* Biar logo sejajar dengan teks */
+    gap: 10px; /* Beri jarak antara logo dan teks */
+}
+
+/* Logo UMKM */
+.umkm-logo {
+    width: 50px; /* Ukuran lebih kecil supaya proporsional */
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Responsif untuk layar lebih kecil */
+@media (max-width: 768px) {
+    .product-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .image-container {
+        max-width: 250px;
+    }
+}

@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { firestore } from '@/../firebase-config';
-import { collection, getDocs, query, where, Query } from 'firebase/firestore';  // Importing the separated CSS file
-import './catalog.css';  // pastikan jalur file sesuai dengan struktur folder Anda
-
+import { useRouter } from "next/navigation"; // Import useRouter untuk navigasi
+import { firestore } from "@/../firebase-config";
+import { collection, getDocs, query, where, Query } from "firebase/firestore";
+import "./catalog.css";
 
 const Ecatalog: React.FC = () => {
+    const router = useRouter();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedQuery, setSelectedQuery] = useState("Semua Jenis UMKM");
     const [products, setProducts] = useState<any[]>([]);
@@ -19,14 +20,14 @@ const Ecatalog: React.FC = () => {
                 let productsQuery: Query<any> = collection(firestore, "products");
 
                 if (selectedQuery !== "Semua Jenis UMKM") {
-                    productsQuery = query(
-                        productsQuery,
-                        where("jenisUMKM", "==", selectedQuery)
-                    );
+                    productsQuery = query(productsQuery, where("jenisUMKM", "==", selectedQuery));
                 }
 
                 const querySnapshot = await getDocs(productsQuery);
-                const productsData = querySnapshot.docs.map((doc) => doc.data());
+                const productsData = querySnapshot.docs.map((doc) => ({
+                    id: doc.id, // Ambil ID dokumen sebagai productId
+                    ...doc.data(),
+                }));
                 setProducts(productsData);
             } catch (error) {
                 console.error("Error fetching products: ", error);
@@ -36,8 +37,8 @@ const Ecatalog: React.FC = () => {
         fetchProducts();
     }, [selectedQuery]);
 
-    const handleSearch = () => {
-        console.log("Mencari dengan", { searchQuery, selectedQuery });
+    const handleProductClick = (productId: string) => {
+        router.push(`/review/${productId}`); // Navigasi ke halaman review berdasarkan productId
     };
 
     const indexOfLastProduct = currentPage * productsPerPage;
@@ -75,19 +76,19 @@ const Ecatalog: React.FC = () => {
                     <option>Craft</option>
                     <option>Beauty</option>
                 </select>
-                <button className="ecatalog-search-button" onClick={handleSearch}>
-                    Cari
-                </button>
+                <button className="ecatalog-search-button">Cari</button>
             </div>
 
             {products.length === 0 ? (
                 <p className="text-center">Sedang memuat produk...</p>
             ) : (
                 <div className="ecatalog-product-container">
-                    {currentProducts.map((product, index) => (
+                    {currentProducts.map((product) => (
                         <div
-                            key={index}
+                            key={product.id}
                             className="ecatalog-product-card"
+                            onClick={() => handleProductClick(product.id)} // Tambahkan event klik
+                            style={{ cursor: "pointer" }} // Ubah cursor jadi pointer agar lebih jelas bisa diklik
                         >
                             <img
                                 src={product.fotoProduk || "/placeholder.png"}
@@ -112,9 +113,7 @@ const Ecatalog: React.FC = () => {
                         <button
                             key={number}
                             onClick={() => handlePagination(number)}
-                            className={`pagination-button ${
-                                currentPage === number ? "active" : "inactive"
-                            }`}
+                            className={`pagination-button ${currentPage === number ? "active" : "inactive"}`}
                         >
                             {number}
                         </button>
