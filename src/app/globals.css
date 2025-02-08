@@ -30,6 +30,21 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Alexandria';
+  src: url('/fonts/Alexandria/Alexandria-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alata';
+  src: url('/fonts/Alata/Alata-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 /* Body styling */
 body {
   @apply bg-white font-sans; /* Mengubah background menjadi putih */

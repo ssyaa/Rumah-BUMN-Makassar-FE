@@ -1,10 +1,11 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import TestimonialCard from './TestimonialCard';
 
 const Testimoni: React.FC = () => {
     const [activeIndex, setActiveIndex] = useState<number>(0);
     const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const containerRef = useRef<HTMLDivElement | null>(null);
 
     const Testimoni = [
         {
@@ -35,18 +36,14 @@ const Testimoni: React.FC = () => {
     ];
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveIndex((prevIndex) => (prevIndex + 1) % Testimoni.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, []);
-
-    useEffect(() => {
-        if (cardRefs.current[activeIndex]) {
-            cardRefs.current[activeIndex]?.scrollIntoView({
+        if (cardRefs.current[activeIndex] && containerRef.current) {
+            const containerWidth = containerRef.current.offsetWidth;
+            const cardWidth = cardRefs.current[activeIndex]?.offsetWidth || 0;
+            const cardLeft = cardRefs.current[activeIndex]?.offsetLeft || 0;
+            const scrollLeft = cardLeft - (containerWidth / 2) + (cardWidth / 2);
+            containerRef.current.scrollTo({
+                left: scrollLeft,
                 behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center',
             });
         }
     }, [activeIndex]);
@@ -61,7 +58,7 @@ const Testimoni: React.FC = () => {
                 <div className="w-full lg:w-1/2 text-left pr-[5vw]">
                     <h2 className="text-[4vw] font-bold mb-[3vh]">Kenapa memilih Rumah BUMN?</h2>
                 </div>
-                <div className="w-full lg:w-1/2 overflow-x-auto whitespace-nowrap flex">
+                <div ref={containerRef} className="w-full lg:w-1/2 overflow-x-auto whitespace-nowrap flex no-scrollbar relative">
                     {Testimoni.map((testimonial, index) => (
                         <div
                             key={index}
