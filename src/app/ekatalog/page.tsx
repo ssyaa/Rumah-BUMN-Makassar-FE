@@ -3,16 +3,34 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { firestore } from "@/../firebase-config";
-import { collection, getDocs, query, where, Query } from "firebase/firestore";
+import {
+    collection,
+    getDocs,
+    query,
+    where,
+    Query,
+    DocumentData,
+} from "firebase/firestore";
+import Image from "next/image";
 import "./catalog.css";
+
+interface Product {
+    id: string;
+    namaBrand?: string;
+    jenisUMKM?: string;
+    namaOwner?: string;
+    descProduct?: string;
+    harga?: number;
+    fotoProduk?: string;
+}
 
 const Ecatalog: React.FC = () => {
     const router = useRouter();
 
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedQuery, setSelectedQuery] = useState("Semua Jenis UMKM");
-    const [products, setProducts] = useState<any[]>([]);
-    const [suggestions, setSuggestions] = useState<any[]>([]);
+    const [products, setProducts] = useState<Product[]>([]);
+    const [suggestions, setSuggestions] = useState<Product[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(true);
 
@@ -22,17 +40,17 @@ const Ecatalog: React.FC = () => {
         const fetchProducts = async () => {
             try {
                 setLoading(true);
-                let productsQuery: Query<any> = collection(firestore, "products");
+                let productsQuery: Query<DocumentData> = collection(firestore, "products");
 
                 if (selectedQuery !== "Semua Jenis UMKM") {
                     productsQuery = query(productsQuery, where("jenisUMKM", "==", selectedQuery));
                 }
 
                 const querySnapshot = await getDocs(productsQuery);
-                const productsData = querySnapshot.docs.map((doc) => ({
+                const productsData: Product[] = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
-                }));
+                })) as Product[];
 
                 setProducts(productsData);
                 setSuggestions([]);
@@ -108,7 +126,7 @@ const Ecatalog: React.FC = () => {
                     onChange={(e) => setSelectedQuery(e.target.value)}
                 >
                     <option>Semua Jenis UMKM</option>
-                    <option>F&B</option>
+                    <option>F&amp;B</option>
                     <option>Fashion</option>
                     <option>Craft</option>
                     <option>Beauty</option>
@@ -122,7 +140,7 @@ const Ecatalog: React.FC = () => {
                         {suggestions.map((suggestion) => (
                             <li
                                 key={suggestion.id}
-                                onClick={() => handleSuggestionClick(suggestion.namaBrand)}
+                                onClick={() => handleSuggestionClick(suggestion.namaBrand || "")}
                                 className="suggestion-item"
                             >
                                 {suggestion.namaBrand}
@@ -143,23 +161,24 @@ const Ecatalog: React.FC = () => {
                             onClick={() => handleProductClick(product.id)}
                             style={{ cursor: "pointer" }}
                         >
-                            <img
+                            <Image
                                 src={product.fotoProduk || "/placeholder.png"}
                                 alt={product.namaBrand || "Produk"}
                                 className="product-img"
+                                width={300}
+                                height={200}
                             />
                             <div className="product-details">
                                 <p className="product-brand">{product.namaBrand || "Brand Tidak Diketahui"}</p>
                                 <p className="product-owner">{product.namaOwner || "Owner Tidak Diketahui"}</p>
                                 <p className="product-desc">{product.descProduct || "Deskripsi tidak tersedia"}</p>
-                                <p className="product-price">Rp {product.harga || "-"}</p>
+                                <p className="product-price">Rp {product.harga?.toLocaleString() || "-"}</p>
                             </div>
                         </div>
                     ))}
                 </div>
             )}
 
-            {/* Pagination */}
             {pageNumbers.length > 1 && (
                 <div className="pagination">
                     {pageNumbers.map((number) => (
