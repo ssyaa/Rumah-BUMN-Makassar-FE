@@ -25,7 +25,7 @@ interface Product {
 }
 
 const ReviewPage = () => {
-  const { productId } = useParams();
+  const { productId } = useParams<{ productId: string }>(); // ✅ Ubah typing useParams di sini
   const id = Array.isArray(productId) ? productId[0] : productId;
   const [product, setProduct] = useState<Product | null>(null);
 
