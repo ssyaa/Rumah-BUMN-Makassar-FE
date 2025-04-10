@@ -14,8 +14,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ imageSrc, quote, name
         <Image
           src={imageSrc}
           alt={name}
-          fill
           className="rounded-full object-cover"
+          fill
+          sizes="96px" // w-24 = 96px
+          style={{ objectFit: "cover" }}
         />
       </div>
       <div className="px-4 py-2">

@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
 
@@ -6,27 +7,31 @@ const Banner: React.FC = () => {
     return (
         <div className="bg-blue-50 h-[300px] flex items-center justify-center">
             <div className="container mx-auto px-4 py-8 flex flex-col md:flex-row items-center justify-between">
-                {/* Gambar bagian kiri */}
+                {/* Bagian Kiri: Gambar (Hanya muncul di layar MD ke atas) */}
                 <div className="hidden md:flex md:w-1/2 relative justify-center items-center mb-6 md:mb-0">
-                    <div className="rounded-lg p-3 max-w-xs mx-auto md:mx-0 relative w-full h-[250px]">
+                    <div className="rounded-lg p-3 max-w-xs mx-auto md:mx-0 relative">
+                        {/* Gambar market.png (background) */}
                         <Image
                             src="/market.png"
                             alt="Rumah BUMN"
-                            fill
-                            className="rounded-lg object-cover"
+                            className="rounded-lg w-full h-auto object-cover"
+                            width={500}
+                            height={300}
                             style={{
                                 transform: "translateY(10%)",
+                                top: "15%",
+                                left: "35%",
                                 width: "90%",
-                                left: "5%",
-                                top: "10%",
+                                height: "auto",
                             }}
                         />
+                        {/* Gambar people.png */}
                         <Image
                             src="/people.png"
                             alt="People"
-                            width={100}
-                            height={100}
                             className="rounded-lg object-cover absolute"
+                            width={250}
+                            height={200}
                             style={{
                                 top: "30%",
                                 left: "45%",
@@ -34,12 +39,13 @@ const Banner: React.FC = () => {
                                 height: "auto",
                             }}
                         />
+                        {/* Gambar logo_rb.png */}
                         <Image
                             src="/logo_rb.png"
                             alt="Rumah BUMN Makassar"
-                            width={50}
-                            height={50}
                             className="rounded-lg object-cover absolute"
+                            width={100}
+                            height={100}
                             style={{
                                 bottom: "65%",
                                 right: "38%",
@@ -50,7 +56,7 @@ const Banner: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Teks dan tombol */}
+                {/* Bagian Kanan: Teks dan Tombol */}
                 <div className="w-full md:w-1/2 text-center md:text-left">
                     <h1 className="text-xl md:text-2xl font-bold text-gray-800">
                         Punya Produk UMKM?

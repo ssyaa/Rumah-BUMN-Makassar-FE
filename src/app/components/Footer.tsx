@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -12,17 +13,17 @@ const Footer: React.FC = () => {
                         <Image
                             src="/logo_bumn.png"
                             alt="BUMN"
-                            width={160}
-                            height={0}
-                            className="h-auto"
+                            width={160} // sesuai dengan className="w-40"
+                            height={60}
+                            priority
                         />
                         {/* Logo RB */}
                         <Image
                             src="/logo_rb.png"
                             alt="RB"
                             width={160}
-                            height={0}
-                            className="h-auto"
+                            height={60}
+                            priority
                         />
                     </div>
                     <div>
@@ -39,10 +40,14 @@ const Footer: React.FC = () => {
                         </p>
                         <p className="mt-2 font-bold text-lg">General Inquiries</p>
                         <p>
-                            <a href="tel:+6281234567890" className="text-black hover:underline">Contact Person</a>
+                            <a href="tel:+6281234567890" className="text-black hover:underline">
+                                Contact Person
+                            </a>
                         </p>
                         <p>
-                            <a href="mailto:rb.makassar0050@gmail.com" className="text-black hover:underline">rb.makassar0050@gmail.com</a>
+                            <a href="mailto:rb.makassar0050@gmail.com" className="text-black hover:underline">
+                                rb.makassar0050@gmail.com
+                            </a>
                         </p>
                     </div>
                 </div>

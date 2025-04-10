@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -28,7 +29,8 @@ const Hero: React.FC = () => {
                     alt="Sulawesi"
                     width={850}
                     height={850}
-                    className="object-contain w-[300px] md:w-[850px] h-[300px] md:h-[850px]"
+                    className="w-[300px] md:w-[850px] h-[300px] md:h-[850px] object-contain"
+                    priority
                 />
             </div>
 

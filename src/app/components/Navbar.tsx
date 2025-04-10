@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import Image from 'next/image';
+import Image from "next/image";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -42,29 +42,23 @@ export default function Navbar() {
   const isReviewPage = pathname.startsWith("/review/");
   const scrolled = scrollY > 50;
 
-  const navbarBg =
-    isReviewPage || (isBeranda && scrolled)
-      ? "bg-white shadow-md"
-      : "bg-transparent";
+  const navbarBg = isReviewPage || (isBeranda && scrolled)
+    ? "bg-white shadow-md"
+    : "bg-transparent";
 
+  const dynamicGray = 255 - Math.min(scrollY, 100) * 2.5;
   const textColorStyle =
-    pathname === "/ekatalog"
-      ? { color: "rgb(55, 65, 81)" } // Gray-700
-      : isReviewPage || (isBeranda && scrolled)
+    isReviewPage || (isBeranda && scrolled)
       ? { color: "black" }
-      : {
-          color: `rgb(${255 - Math.min(scrollY, 100) * 2.5}, ${255 - Math.min(scrollY, 100) * 2.5}, ${255 - Math.min(scrollY, 100) * 2.5})`,
-        };
+      : { color: `rgb(${dynamicGray}, ${dynamicGray}, ${dynamicGray})` };
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md transition-all duration-300 ${navbarBg}`}
-      >
+      <header className={`fixed top-0 left-0 w-full z-50 backdrop-blur-md transition-all duration-300 ${navbarBg}`}>
         <div className="container mx-auto flex justify-between items-center py-4 px-6 relative">
           <div className="flex items-center">
-            <Image src="/logo_bumn.png" alt="Logo BUMN" width={100} height={32} className="h-8 mr-4" />
-            <Image src="/logo_rb_mks.png" alt="Logo RB Makassar" width={100} height={48} className="h-12 mr-4" />
+            <Image src="/logo_bumn.png" alt="Logo BUMN" className="h-8 mr-4" width={32} height={32} />
+            <Image src="/logo_rb_mks.png" alt="Logo RB Makassar" className="h-12 mr-4" width={48} height={48} />
           </div>
 
           <nav className="hidden md:flex space-x-6 items-center ml-auto">

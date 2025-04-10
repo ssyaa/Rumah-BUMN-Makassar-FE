@@ -5,7 +5,7 @@ import "./review.css";
 import { useParams } from "next/navigation";
 import { db } from "@/../firebase-config";
 import { doc, onSnapshot } from "firebase/firestore";
-import Image from "next/image";
+import Image from "next/image"; // ✅ Import Image dari next/image
 
 interface Product {
   fotoProduk: string;
@@ -25,7 +25,7 @@ interface Product {
 }
 
 const ReviewPage = () => {
-  const { productId } = useParams<{ productId: string }>(); // ✅ Ubah typing useParams di sini
+  const { productId } = useParams();
   const id = Array.isArray(productId) ? productId[0] : productId;
   const [product, setProduct] = useState<Product | null>(null);
 
@@ -51,20 +51,19 @@ const ReviewPage = () => {
         <div className="box-1">
           {product ? (
             <div className="content">
-              {/* Gambar Produk */}
+              {/* Bagian Kiri: Gambar */}
               <div className="left">
-                <div className="relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px]">
-                  <Image
-                    src={product.fotoProduk}
-                    alt={product.namaBrand}
-                    fill
-                    className="object-cover rounded-md product-image"
-                    sizes="(max-width: 768px) 100vw, 300px"
-                  />
-                </div>
+                <Image
+                  src={product.fotoProduk}
+                  alt={product.namaBrand}
+                  className="product-image"
+                  width={400}
+                  height={400}
+                  priority
+                />
               </div>
 
-              {/* Informasi Produk */}
+              {/* Bagian Kanan: Informasi Produk */}
               <div className="right">
                 <h1 className="title">{product.namaBrand}</h1>
                 <p className="owner">{product.namaOwner}</p>
