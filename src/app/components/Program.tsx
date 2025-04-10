@@ -2,9 +2,9 @@
 
 const ProgramPage = () => {
     return (
-        <div className="flex pl-7 items-center min-s-screen">
+        <div className="flex pl-7 items-center overflow-x-hidden">
             <h1
-                className="text-[56px] font-bold tracking-[10px] uppercase"
+                className="text-[36px] md:text-[56px] font-bold tracking-[5px] md:tracking-[10px] uppercase"
                 style={{
                     fontFamily: "Poppins, sans-serif",
                     color: "#001C57",

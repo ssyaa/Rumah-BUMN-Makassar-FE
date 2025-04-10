@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const Hero: React.FC = () => {
     return (
@@ -22,19 +23,23 @@ const Hero: React.FC = () => {
 
             {/* Gambar Sulawesi sebagai Background di Sisi Kanan */}
             <div className="absolute top-[-50px] right-[-120px] z-10 p-10 opacity-30 hidden md:block">
-                <img
+                <Image
                     src="/sulawesi.png"
                     alt="Sulawesi"
-                    className="w-[300px] md:w-[850px] h-[300px] md:h-[850px] object-contain"
+                    width={850}
+                    height={850}
+                    className="object-contain w-[300px] md:w-[850px] h-[300px] md:h-[850px]"
                 />
             </div>
 
             {/* Gambar Latar Belakang */}
             <div className="absolute inset-0 w-full h-full z-0">
-                <img
+                <Image
                     src="/hero_bg.png"
                     alt="Map"
-                    className="w-full h-full object-cover opacity-80"
+                    fill
+                    className="object-cover opacity-80"
+                    priority
                 />
             </div>
         </section>

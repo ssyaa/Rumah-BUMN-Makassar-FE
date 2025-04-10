@@ -1,77 +1,131 @@
-/* Container utama */
-.review-container {
-    max-width: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 20px;
-    font-family: "Poppins, sans-serif";
+.review-page {
+  background-color: #d3d3d3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5cm 8cm;
+  width: 100%;
 }
 
-/* Tombol kembali */
-.back-button {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 16px;
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
+.container-review {
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-/* Wrapper utama */
-.product-wrapper {
-    display: flex;
-    gap: 40px;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 20px;
+.box-1 {
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  align-items: stretch; /* Pastikan kedua bagian sejajar */
+  margin-top:-70px;
 }
 
-/* Container untuk gambar */
-.image-container {
-    flex: 0.6;
-    max-width: 400px;
-    background-color: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    padding: 0;
+.content {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch; /* Sejajarkan tinggi */
+  width: 100%;
+  gap: 20px;
+}
+
+/* Bagian Kiri: Gambar */
+.left {
+  flex: 1.5; /* Lebar fleksibel */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .product-image {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 8px;
+  width: 300px; /* Ubah sesuai kebutuhan */
+  height: 300px; /* Harus sama dengan width untuk menjaga 1:1 */
+  object-fit: cover; /* Memastikan gambar tetap proporsional */
+  border-radius: 10px; /* Opsional: Membuat sudut lebih halus */
 }
 
-/* Kontainer untuk nama brand + logo */
-.product-title-container {
-    display: flex;
-    align-items: center; /* Biar logo sejajar dengan teks */
-    gap: 10px; /* Beri jarak antara logo dan teks */
+/* Bagian Kanan: Informasi */
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
 }
 
-/* Logo UMKM */
-.umkm-logo {
-    width: 50px; /* Ukuran lebih kecil supaya proporsional */
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: block;
+/* Grid untuk informasi */
+.info-grid-b1 {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Kolom pertama auto (sesuai panjang teks), kolom kedua fleksibel */
+  gap: 10px 30px; /* Jarak antar elemen */
+  align-items: start; /* Supaya label tetap sejajar di kiri */
 }
 
-/* Responsif untuk layar lebih kecil */
-@media (max-width: 768px) {
-    .product-wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .image-container {
-        max-width: 250px;
-    }
+.info-label-b1 {
+  font-weight: bold;
+  text-align: left;
 }
+
+.info-value-b1 {
+  text-align: left;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.description,
+.category,
+.umkm {
+  font-size: 16px;
+  margin: 5px 0;
+}
+
+/* Responsif: Jika layar kecil, stack ke bawah */
+@media (max-width: 600px) {
+  .content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .right {
+    text-align: center;
+  }
+}
+
+.box-2 {
+  background-color: white;
+  border-radius: 10px;
+  padding: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 900px;
+  text-align: left;
+}
+.product-image {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.info-grid-b2 {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px 30px;
+  align-items: start;
+}
+
+.info-label-b2 {
+  font-weight: bold;
+  text-align: left;
+}
+
+.info-value-b2 {
+  text-align: left;
+}
+

@@ -8,6 +8,7 @@ import VisitRumahProduksi from "@/app/components/Visit";
 import Live from "@/app/components/Tiktok";
 import Informasi from "@/app/components/Irpem";
 import Jobdesk from "@/app/components/Program";
+import Footer from "@/app/components/Footer";
 
 export const metadata = {
     title: "Rumah BUMN - Beranda",
@@ -27,6 +28,7 @@ export default function Home() {
             <Live />
             <Informasi/>
             <Banner />
+            <Footer />
         </div>
     );
 }

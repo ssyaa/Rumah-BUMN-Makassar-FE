@@ -2,11 +2,11 @@ import React from "react";
 
 const DisplayProduct = () => {
   return (
-    <div className="p-6 pt-12 bg-white shadow-md flex justify-between items-center">
+    <div className="p-6 pt-12 bg-white shadow-md flex justify-between items-center w-full overflow-x-hidden">
       {/* Bagian Kiri: Teks */}
       <div className="w-1/2">
         <h2
-          className="text-[48px] font-bold tracking-[10px] uppercase"
+          className="text-[32px] md:text-[48px] font-bold tracking-[5px] md:tracking-[10px] uppercase"
           style={{
             fontFamily: "Alexandria, sans-serif",
             color: "#514C00",
@@ -17,11 +17,9 @@ const DisplayProduct = () => {
         </h2>
 
         <p
-          className="mt-2 text-black"
+          className="mt-2 text-black text-[20px] md:text-[32px] tracking-[1px] md:tracking-[2px]"
           style={{
             fontFamily: "Alata, sans-serif",
-            fontSize: "32px",
-            letterSpacing: "2px",
           }}
         >
           Memperkenalkan produk Anda dengan memajangnya di Rumah BUMN Makassar.
