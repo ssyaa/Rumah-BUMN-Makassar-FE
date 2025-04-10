@@ -43,15 +43,16 @@ const Ecatalog: React.FC = () => {
                 let productsQuery: Query<DocumentData> = collection(firestore, "products");
 
                 if (selectedQuery !== "Semua Jenis UMKM") {
-                    productsQuery = query(productsQuery, where("jenisUMKM", "==", selectedQuery));
+                productsQuery = query(productsQuery, where("jenisUMKM", "==", selectedQuery));
                 }
 
+    
                 const querySnapshot = await getDocs(productsQuery);
                 const productsData: Product[] = querySnapshot.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data(),
                 })) as Product[];
-
+    
                 setProducts(productsData);
                 setSuggestions([]);
                 setCurrentPage(1);
@@ -61,9 +62,10 @@ const Ecatalog: React.FC = () => {
                 setLoading(false);
             }
         };
-
+    
         fetchProducts();
     }, [selectedQuery]);
+    
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const query = e.target.value;
