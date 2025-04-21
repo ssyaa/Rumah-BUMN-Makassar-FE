@@ -1,9 +1,15 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 const ProgramPage = () => {
     return (
-        <div className="flex pl-7 items-center overflow-x-hidden">
-            <h1
+        <div id="program" className="flex pl-7 pt-12 items-center overflow-x-hidden">
+            <motion.h1
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                viewport={{ once: true }}
                 className="text-[36px] md:text-[56px] font-bold tracking-[5px] md:tracking-[10px] uppercase"
                 style={{
                     fontFamily: "Poppins, sans-serif",
@@ -12,7 +18,7 @@ const ProgramPage = () => {
                 }}
             >
                 PROGRAM RUMAH BUMN
-            </h1>
+            </motion.h1>
         </div>
     );
 };

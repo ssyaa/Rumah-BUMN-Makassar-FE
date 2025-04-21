@@ -5,7 +5,7 @@ import "./review.css";
 import { useParams } from "next/navigation";
 import { db } from "@/../firebase-config";
 import { doc, onSnapshot } from "firebase/firestore";
-import Image from "next/image"; // ✅ Import Image dari next/image
+import Image from "next/image";
 
 interface Product {
   fotoProduk: string;

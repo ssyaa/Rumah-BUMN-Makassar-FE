@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Banner: React.FC = () => {
     return (
@@ -47,8 +48,8 @@ const Banner: React.FC = () => {
                             width={100}
                             height={100}
                             style={{
-                                bottom: "65%",
-                                right: "38%",
+                                bottom: "72%",
+                                right: "46%",
                                 width: "15%",
                                 height: "auto",
                             }}
@@ -57,7 +58,13 @@ const Banner: React.FC = () => {
                 </div>
 
                 {/* Bagian Kanan: Teks dan Tombol */}
-                <div className="w-full md:w-1/2 text-center md:text-left">
+                <motion.div
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    viewport={{ once: true }}
+                    className="w-full md:w-1/2 text-center md:text-left"
+                >
                     <h1 className="text-xl md:text-2xl font-bold text-gray-800">
                         Punya Produk UMKM?
                         <br />
@@ -68,7 +75,7 @@ const Banner: React.FC = () => {
                             Daftar
                         </button>
                     </a>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

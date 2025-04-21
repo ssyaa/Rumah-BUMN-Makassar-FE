@@ -5,14 +5,14 @@ import { motion } from "framer-motion";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { app } from "../../../firebase-config"; // Pastikan path ini sesuai ya!
 
-const LiveTiktok = () => {
+const Design = () => {
     const [nope, setNope] = useState<string>("");
 
     useEffect(() => {
         const fetchNope = async () => {
         try {
             const db = getFirestore(app);
-            const docRef = doc(db, "personalContact", "LiveTiktok");
+            const docRef = doc(db, "personalContact", "Design");
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
             setNope(docSnap.data().nope);
@@ -34,11 +34,14 @@ const LiveTiktok = () => {
     };
 
     return (
-        <div className="p-6 pt-32 md:pt-56 bg-white shadow-md flex flex-col md:flex-row justify-between items-center w-full overflow-x-hidden">
-        {/* Bagian Kiri: Teks */}
-        <div className="w-full md:w-1/2 text-center md:text-left">
+        <div className="p-6 pt-32 pb-32 md:pt-56 md:pb-56 bg-white shadow-md flex flex-col md:flex-row justify-between items-center overflow-x-hidden">
+        {/* Bagian Kiri: Kosong */}
+        <div className="w-full md:w-1/2 mt-6 md:mt-0"></div>
+
+        {/* Bagian Kanan: Teks */}
+        <div className="w-full md:w-1/2 text-center md:text-right">
             <motion.h2
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
@@ -49,11 +52,11 @@ const LiveTiktok = () => {
                 textShadow: "2px 2px 3px rgba(0, 0, 0, 0.2)",
             }}
             >
-            LIVE TIKTOK
+            Design UMKM
             </motion.h2>
 
             <motion.p
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
             viewport={{ once: true }}
@@ -62,16 +65,7 @@ const LiveTiktok = () => {
                 fontFamily: "Alata, sans-serif",
             }}
             >
-            Melakukan live di{" "}
-            <a
-                href="https://www.tiktok.com/@rumahbumn_makassar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-700 hover:underline"
-            >
-                Tiktok Rumah BUMN Makassar
-            </a>
-            , untuk mempromosikan produk Anda agar lebih dikenal oleh banyak orang.
+            Membantu UMKM untuk membuat tanda pengenal usaha agar bisa lebih efektif dalam promosi
             </motion.p>
 
             {/* Tombol Contact */}
@@ -90,11 +84,8 @@ const LiveTiktok = () => {
             </button>
             </motion.div>
         </div>
-
-        {/* Bagian Kanan: Kosong */}
-        <div className="w-full md:w-1/2 mt-6 md:mt-0"></div>
         </div>
     );
 };
 
-export default LiveTiktok;
+export default Design;
