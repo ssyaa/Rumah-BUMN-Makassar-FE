@@ -102,7 +102,7 @@ const EKatalog = () => {
                     <button
                         onClick={handleContactClick}
                         disabled={!nope}
-                        className="mt-4 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md uppercase text-xs md:text-sm font-semibold"
+                        className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md uppercase text-xs md:text-sm font-semibold"
                     >
                         {nope ? "Contact Personal" : "Loading..."}
                     </button>
