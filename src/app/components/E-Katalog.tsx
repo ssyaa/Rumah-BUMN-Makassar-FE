@@ -11,22 +11,24 @@ const EKatalog = () => {
     const [nope, setNope] = useState<string | null>(null);
 
     useEffect(() => {
-        const fetchNope = async () => {
-            try {
-                const db = getFirestore(app);
-                const docRef = doc(db, "personalContact", "ekatalog"); // Ganti ke 'personalContact'
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    setNope(docSnap.data().nope);
-                } else {
-                    console.log("No such document!");
-                }
-            } catch (error) {
-                console.error("Error fetching document:", error);
+    const fetchNope = async () => {
+        try {
+            const db = getFirestore(app);
+            const docRef = doc(db, "personalContact", "ekatalog");
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                const fetchedNope = docSnap.data().nope;
+                console.log("Fetched Nope:", fetchedNope);
+                setNope(fetchedNope);
+            } else {
+                console.log("No such document!");
             }
-        };
+        } catch (error) {
+            console.error("Error fetching document:", error);
+        }
+    };
 
-        fetchNope();
+    fetchNope();
     }, []);
 
     const handleContactClick = () => {
