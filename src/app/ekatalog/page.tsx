@@ -129,7 +129,7 @@ const Ecatalog: React.FC = () => {
                         >
                             <div className="relative w-full h-40">
                                 <Image
-                                    src={product.fotoProduk || "/placeholder.png"}
+                                    src={Array.isArray(product.fotoProduk) && product.fotoProduk[0]? product.fotoProduk[0]: "/placeholder.png"} //error ini (gambar tidak tampil)
                                     alt={product.namaBrand || "Produk"}
                                     fill
                                     className="object-cover rounded-t-lg"
