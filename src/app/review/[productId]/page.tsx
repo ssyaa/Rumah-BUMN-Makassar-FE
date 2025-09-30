@@ -8,7 +8,7 @@ import { doc, onSnapshot } from "firebase/firestore";
 import Image from "next/image";
 
 interface Product {
-  fotoProduk: string;
+  fotoProduk: string | string[] | null;
   beratProduk: string;
   jenisUMKM: string;
   variantProduk: string;
@@ -39,11 +39,20 @@ const ReviewPage = () => {
         setProduct(docSnap.data() as Product);
       } else {
         console.error("Produk tidak ditemukan");
+        setProduct(null);
       }
     });
 
     return () => unsubscribe();
   }, [id]);
+
+  // Ambil hanya gambar pertama
+  const getFoto = (fotoProduk: string | string[] | null | undefined) => {
+    if (!fotoProduk) return null;
+    return Array.isArray(fotoProduk) ? fotoProduk[0] : fotoProduk;
+  };
+
+  const foto = getFoto(product?.fotoProduk);
 
   return (
     <div className="review-page">
@@ -53,17 +62,21 @@ const ReviewPage = () => {
             <div className="content">
               {/* Bagian Kiri: Gambar */}
               <div className="left">
-                <Image
-                  src={product.fotoProduk}
-                  alt={product.namaBrand}
-                  className="product-image"
-                  width={400}
-                  height={400}
-                  priority
-                />
+                {foto ? (
+                  <Image
+                    src={foto}
+                    alt={product.namaBrand || "Produk"}
+                    className="product-image"
+                    width={400}
+                    height={400}
+                    priority
+                  />
+                ) : (
+                  <p className="loading">Gambar tidak tersedia</p>
+                )}
               </div>
 
-              {/* Bagian Kanan: Informasi Produk */}
+              {/* Bagian Kanan */}
               <div className="right">
                 <h1 className="title">{product.namaBrand}</h1>
                 <p className="owner">{product.namaOwner}</p>
@@ -89,6 +102,7 @@ const ReviewPage = () => {
         </div>
       </div>
 
+      {/* Bagian Detail */}
       <div className="container">
         <div className="box-2">
           {product ? (
