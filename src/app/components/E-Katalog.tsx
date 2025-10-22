@@ -34,7 +34,7 @@ const EKatalog = () => {
     const handleContactClick = () => {
         if (nope) {
             // Membuka WhatsApp dengan nomor yang sudah didapat
-            window.open(`https://wa.me/${nope}`, "_blank");
+            window.open(`https://api.whatsapp.com/send?phone=${nope}`, "_blank");
         } else {
             alert("Nomor WhatsApp belum tersedia!");
         }
