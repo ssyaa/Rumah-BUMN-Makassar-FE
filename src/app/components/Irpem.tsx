@@ -31,7 +31,7 @@ const InformasiPembinaan = () => {
     useEffect(() => {
         if (hasScrolled) {
         let start = 0;
-        const end = 120;
+        const end = 188;
         const duration = 2000; // Animation duration in milliseconds
         const increment = end / (duration / 50); // Increment value per step (50ms)
 
