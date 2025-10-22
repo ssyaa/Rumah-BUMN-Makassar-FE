@@ -29,7 +29,7 @@ const DisplayProduct = () => {
 
   const handleContactClick = () => {
     if (nope) {
-      window.open(`https://wa.me/${nope}`, "_blank");
+      window.open(`https://api.whatsapp.com/send?phone=${nope}`, "_blank");
     }
   };
 
